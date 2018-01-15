@@ -6,7 +6,7 @@
     "react-dev": "webpack --watch --colors",
     "server-dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "postbuild": "webpack -p --progress"
+    "postinstall": "webpack -p --progress"
   },
   "author": "Clara Cho",
   "license": "MIT",
