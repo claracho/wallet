@@ -31,7 +31,7 @@ class Wallet extends Component {
     console.log('wallet render');
 
     const cardList = this.props.userData.cards.map(card => (
-      <div key={card.id} value={card.id} onClick={() => this.selectCard(card)}>
+      <div key={card._id} onClick={() => this.selectCard(card)}>
         {card.number}
       </div>
     ));

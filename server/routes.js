@@ -1,24 +1,23 @@
 const router = require('express').Router();
-
-let user = null;
+const db = require('./db');
 
 // get specific user data NEED TO AUTHENTICATE
 router.get('/userData', (req, res) => {
-  res.send(user);
+  db.Users.findOne({ username: 'Clara' })
+    .then((data) => {
+      res.send(data);
+    });
 });
 
 // sign up, create user
 
 // log in
 router.post('/login', (req, res) => {
-  const { username } = req.body;
-  user = { username, cards: [{ id: 1, number: 1234123412341234 }] };
   res.redirect('/');
 });
 
 // log out
 router.get('/logout', (req, res) => {
-  user = null;
   res.redirect('/');
 });
 

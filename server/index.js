@@ -5,8 +5,13 @@ const cors = require('cors');
 const path = require('path');
 const _ = require('lodash');
 const router = require('./routes');
+const mongoose = require('mongoose');
 
 const app = express();
+
+// connect to mongoDB
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 
 // middleware - serve static assets
 app.use(express.static(path.resolve(__dirname, '../public/')));
@@ -17,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// router
+// router - handle all routes
 app.use('/', router);
 
 // middleware - error handler
