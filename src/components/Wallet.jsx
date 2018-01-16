@@ -11,14 +11,6 @@ class Wallet extends Component {
     };
   }
 
-  componentDidMount() {
-    axios.get(`/users/${this.props.userData.username}/cards`)
-      .then((result) => {
-        const cards = result.data;
-        this.setState({ cards });
-      });
-  }
-
   selectCard(card) {
     const selected = !(this.state.cardSelected && card.number === this.state.cardSelected.number);
     this.setState({

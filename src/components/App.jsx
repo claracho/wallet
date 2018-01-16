@@ -47,9 +47,7 @@ class App extends Component {
           <Route
             exact
             path="/users/:username/addcard"
-            render={() => (
-              <AddCard />
-            )}
+            component={AddCard}
           />
           <Route
             exact
