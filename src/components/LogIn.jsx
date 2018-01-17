@@ -1,6 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const LogIn = (props) => (
+const propTypes = {
+  handleLogIn: PropTypes.func.isRequired,
+};
+
+const LogIn = props => (
   <div className="login">
     <h4>wallet</h4>
     <form onSubmit={props.handleLogIn}>
@@ -9,5 +14,7 @@ const LogIn = (props) => (
     </form>
   </div>
 );
+
+LogIn.propTypes = propTypes;
 
 export default LogIn;

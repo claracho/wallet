@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import AngleRight from 'react-icons/lib/fa/angle-right';
+
+const propTypes = {
+  handleAddCard: PropTypes.func.isRequired,
+};
 
 const AddCard = (props) => {
   const { username } = props.match.params;
@@ -11,8 +17,8 @@ const AddCard = (props) => {
 
   return (
     <div>
-      <span onClick={props.history.goBack}>{' < '}</span>
       Add Card for {username}
+      <AngleRight onClick={props.history.goBack} />
       <form onSubmit={onSubmit}>
         <input type="text" name="firstName" placeholder="first name" required />
         <input type="text" name="lastName" placeholder="last name" required />
@@ -24,5 +30,7 @@ const AddCard = (props) => {
     </div>
   );
 };
+
+AddCard.propTypes = propTypes;
 
 export default AddCard;

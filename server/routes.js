@@ -2,20 +2,6 @@ const router = require('express').Router();
 const db = require('./db');
 const _ = require('lodash');
 
-// get user data
-router.get('/userData', (req, res, next) => {
-  if (req.session.userID) { // if user logged in
-    const _id = req.session.userID;
-    db.Users.findOne({ _id })
-      .then((user) => {
-        res.send(user);
-      })
-      .catch(err => next(`/userData GET error: ${err}`));
-  } else { // if user not logged in
-    res.send(null);
-  }
-});
-
 // log in and sign up
 router.post('/login', (req, res, next) => {
   const { username } = req.body;
@@ -42,7 +28,21 @@ router.get('/logout', (req, res) => {
   res.end();
 });
 
-// add a credit card
+// READ user data, which includes username and all card information
+router.get('/userData', (req, res, next) => {
+  if (req.session.userID) { // if user logged in
+    const _id = req.session.userID;
+    db.Users.findOne({ _id })
+      .then((user) => {
+        res.send(user);
+      })
+      .catch(err => next(`/userData GET error: ${err}`));
+  } else { // if user not logged in
+    res.send(null);
+  }
+});
+
+// CREATE a credit card
 router.post('/users/:username/cards', (req, res, next) => {
   if (req.session.userID) {
     const _id = req.session.userID;
@@ -58,22 +58,7 @@ router.post('/users/:username/cards', (req, res, next) => {
   }
 });
 
-// delete a credit card
-router.delete('/users/:username/cards/:id', (req, res, next) => {
-  if (req.session.userID) {
-    const _id = req.session.userID;
-    const cardId = req.params.id;
-    db.Users.findOneAndUpdate({ _id }, { $pull: { cards: { _id: cardId } } }, { new: true })
-      .then((user) => {
-        res.send(user);
-      })
-      .catch(err => next(`/users/:username/cards DELETE error: ${err}`));
-  } else {
-    next('/users/:username/cards DELETE error: user not logged in');
-  }
-});
-
-// update a credit card
+// UPDATE a credit card
 router.put('/users/:username/cards/:id', (req, res, next) => {
   if (req.session.userID) {
     const _id = req.session.userID;
@@ -87,6 +72,21 @@ router.put('/users/:username/cards/:id', (req, res, next) => {
       .catch(err => next(`/users/:username/cards PUT error: ${err}`));
   } else {
     next('/users/:username/cards PUT error: user not logged in');
+  }
+});
+
+// DELETE a credit card
+router.delete('/users/:username/cards/:id', (req, res, next) => {
+  if (req.session.userID) {
+    const _id = req.session.userID;
+    const cardId = req.params.id;
+    db.Users.findOneAndUpdate({ _id }, { $pull: { cards: { _id: cardId } } }, { new: true })
+      .then((user) => {
+        res.send(user);
+      })
+      .catch(err => next(`/users/:username/cards DELETE error: ${err}`));
+  } else {
+    next('/users/:username/cards DELETE error: user not logged in');
   }
 });
 

@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  selectedCard: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+    expiration: PropTypes.number.isRequired,
+    cvv: PropTypes.number.isRequired,
+  }),
+};
+
+const defaultProps = {
+  selectedCard: null,
+};
 
 class Payable extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   shouldComponentUpdate(nextProps) {
     return nextProps.selectedCard !== this.props.selectedCard;
   }
@@ -21,5 +34,8 @@ class Payable extends Component {
     );
   }
 }
+
+Payable.propTypes = propTypes;
+Payable.defaultProps = defaultProps;
 
 export default Payable;

@@ -1,6 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import CloseIcon from 'react-icons/lib/fa/close';
+
+const propTypes = {
+  userData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  selectedCard: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+    expiration: PropTypes.number.isRequired,
+    cvv: PropTypes.number.isRequired,
+  }),
+  handleLogOut: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  selectedCard: null,
+};
 
 const Wallet = (props) => {
   console.log('wallet render');
@@ -26,12 +50,15 @@ const Wallet = (props) => {
   return (
     <div>
       {`${props.userData.username}'s wallet`}
-      <span onClick={handleLogOut}>{' X '}</span>
+      <CloseIcon onClick={handleLogOut} />
       <Link to={`/users/${props.userData.username}/addcard`}>Add a Card</Link>
       <Link to={`/users/${props.userData.username}/managecards`}>Manage Cards</Link>
       {cardList}
     </div>
   );
 };
+
+Wallet.propTypes = propTypes;
+Wallet.defaultProps = defaultProps;
 
 export default Wallet;

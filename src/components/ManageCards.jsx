@@ -1,4 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import TrashIcon from 'react-icons/lib/fa/trash-o';
+import EditIcon from 'react-icons/lib/fa/edit';
+import AngleLeft from 'react-icons/lib/fa/angle-left';
+
+const propTypes = {
+  userData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  handleRemoveCard: PropTypes.func.isRequired,
+  handleModifyCard: PropTypes.func.isRequired,
+};
 
 class ManageCards extends Component {
   constructor(props) {
@@ -47,8 +61,8 @@ class ManageCards extends Component {
     const cardList = this.props.userData.cards.map(card => (
       <div key={card._id}>
         {card.name}
-        <span onClick={() => this.props.handleRemoveCard(card._id)}>{' - '}</span>
-        <span onClick={() => this.setModifyCard(card._id)}>{' m '}</span>
+        <TrashIcon onClick={() => this.props.handleRemoveCard(card._id)} />
+        <EditIcon onClick={() => this.setModifyCard(card._id)} />
         {card._id === this.state.modifyCard
           ? detail(card)
           : null}
@@ -57,12 +71,14 @@ class ManageCards extends Component {
 
     return (
       <div>
-        <span onClick={this.props.history.goBack}>{' < '}</span>
+        <AngleLeft onClick={this.props.history.goBack} />
         Manage Cards for {this.username}
         {cardList}
       </div>
     );
   }
 }
+
+ManageCards.propTypes = propTypes;
 
 export default ManageCards;
