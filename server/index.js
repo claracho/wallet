@@ -34,7 +34,6 @@ app.use(session({
 app.use('/', router);
 
 // middleware - error handler
-// MAKE SURE ALL ERRORS ARE PASSED IN VIA NEXT()
 app.use((err, req, res, next) => {
   console.log(err);
   if (err) res.status(500).send(err);

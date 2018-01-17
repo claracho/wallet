@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AngleRight from 'react-icons/lib/fa/angle-right';
+import AngleLeft from 'react-icons/lib/fa/angle-left';
+
+import CardForm from './CardForm';
 
 const propTypes = {
   handleAddCard: PropTypes.func.isRequired,
@@ -16,17 +19,13 @@ const AddCard = (props) => {
   };
 
   return (
-    <div>
-      Add Card for {username}
-      <AngleRight onClick={props.history.goBack} />
-      <form onSubmit={onSubmit}>
-        <input type="text" name="firstName" placeholder="first name" required />
-        <input type="text" name="lastName" placeholder="last name" required />
-        <input type="text" name="number" placeholder="card number" required />
-        <input type="text" name="expiration" placeholder="expiration" required />
-        <input type="text" name="cvv" placeholder="cvv" required />
-        <button type="submit">Add A Card</button>
-      </form>
+    <div className="wallet-sub-container">
+      <div className="wallet-row">
+        <AngleLeft className="icon hide" />
+        Add Card for {username}
+        <AngleRight className="icon" onClick={props.history.goBack} />
+      </div>
+      <CardForm onSubmit={onSubmit} />
     </div>
   );
 };

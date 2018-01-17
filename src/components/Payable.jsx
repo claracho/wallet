@@ -8,6 +8,7 @@ const propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
     expiration: PropTypes.number.isRequired,
     cvv: PropTypes.number.isRequired,
   }),
@@ -25,11 +26,15 @@ class Payable extends Component {
   render() {
     console.log('payable render');
     return (
-      <div>
+      <div className="payable">
         Amount Due: $13.37
         {this.props.selectedCard
-          ? <button onClick={() => console.log(this.props.selectedCard)}>Pay with {this.props.selectedCard.name}</button>
-          : null}
+          ? <button className="col-100" onClick={() => console.log(this.props.selectedCard)}>
+              {`Pay with ${this.props.selectedCard.type} ${this.props.selectedCard.name}`}
+            </button>
+          : <button className="col-100 disabled" disabled>
+              {'Select Payment Method'}
+            </button>}
       </div>
     );
   }

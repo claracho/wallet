@@ -65,6 +65,7 @@ class App extends Component {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       number: e.target.number.value,
+      type: e.target.type.value,
       expiration: e.target.expiration.value,
       cvv: e.target.expiration.value,
     };
@@ -87,6 +88,7 @@ class App extends Component {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       number: e.target.number.value,
+      type: e.target.type.value,
       expiration: e.target.expiration.value,
       cvv: e.target.expiration.value,
     };
@@ -153,9 +155,10 @@ class App extends Component {
                 />
               </div>)
             : (
-              <div className="wallet-container">
+              <div className="login-container">
                 <LogIn handleLogIn={this.handleLogIn} />
-              </div>)}
+              </div>
+            )}
           <div className="payable-container">
             <Payable selectedCard={this.state.selectedCard} />
           </div>

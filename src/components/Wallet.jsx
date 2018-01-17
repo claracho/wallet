@@ -15,6 +15,7 @@ const propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
     expiration: PropTypes.number.isRequired,
     cvv: PropTypes.number.isRequired,
   }),
@@ -42,17 +43,22 @@ const Wallet = (props) => {
       : 'card';
     return (
       <div key={card._id} className={className} onClick={() => props.handleSelect(card)}>
-        {card.name}
+        {`${card.type} ${card.name}`}
       </div>
     );
   });
 
   return (
-    <div>
-      {`${props.userData.username}'s wallet`}
-      <CloseIcon onClick={handleLogOut} />
-      <Link to={`/users/${props.userData.username}/addcard`}>Add a Card</Link>
-      <Link to={`/users/${props.userData.username}/managecards`}>Manage Cards</Link>
+    <div className="wallet-sub-container">
+      <div className="wallet-row">
+        <CloseIcon className="icon hide" />
+        {`${props.userData.username}'s wallet`}
+        <CloseIcon className="icon" onClick={handleLogOut} />
+      </div>
+      <div className="wallet-row">
+        <Link to={`/users/${props.userData.username}/addcard`}>Add a Card</Link>
+        <Link to={`/users/${props.userData.username}/managecards`}>Manage Cards</Link>
+      </div>
       {cardList}
     </div>
   );

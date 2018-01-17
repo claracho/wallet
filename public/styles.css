@@ -1,102 +1,169 @@
 html, body {
-  padding: 10px;
-  background-color: white;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  padding: 20px;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
   font-size: 18px;
-}
-
-/* TODO change width based on window width*/
-/* 
-Computer: should center horizontally and vertically 
-Tablet: should center horizontally and vertically for both landscape and portrait mode
-Mobile: should center horizontally, vertically use scroll feature
-*/
-
-.container {
-  margin: auto;
-  width: 800px;
-  height: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  /*background-color: lightblue;*/
-  border: 1px solid gray;
-  border-radius: 10px;
-  /*box-shadow: 0px 5px 15px 0px grey;*/
-  overflow: hidden;
-}
-
-.wallet-container {
-  padding: 10px;
-  min-width: 300px;
-  border-right: 1px solid gray; /* change to border-bottom when size changes */
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.payable-container {
-  padding: 10px;
-  min-width: 300px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: lightgrey;
-}
-
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card {
-
-}
-
-.selected-card{
-  background-color: lightblue;
 }
 
 button {
   display: block;
-  margin: 10px 0px;
   padding: 6px;
-  width: 100%;
-  background-color: blue;
-  border: 1px solid blue;
-  border-radius: 5px;
+  background-color: #000099;
+  border: 1px solid #000099;
+  border-radius: 3px;
   color: white;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 16px;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  font-size: 18px;
 }
 
 button:hover {
   background-color: white;
-  color: blue;
+  color: #000099;
 }
 
 button:focus {
   outline: none;
 }
 
+button:disabled {
+  border: 1px solid #727272;
+  background-color: #727272;
+  color: white;
+}
 
 input[type=text] {
   box-sizing: border-box;
-  display: block;
-  margin: 10px 0px;
-  padding: 6px;
-  width: 100%;
-  border: 1px solid gray;
-  border-radius: 5px;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 16px;
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  font-size: 18px;
 }
 
 input[type=text]:focus {
   outline: none;
-  border: 1px solid blue;
+  border: 1px solid #000099;
 }
+
+label > input { 
+  visibility: hidden;
+}
+
+label > input:checked + .cc {
+  color: #000099;
+}
+
+.container {
+  margin: auto;
+  min-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  box-shadow: 0px 5px 15px 0px #333333;
+  overflow: hidden;
+}
+
+.login-container, .wallet-container, .payable-container {
+  min-width: 300px;
+  border: 0.1px solid #CCCCCC;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wallet-container {
+  align-items: stretch;
+}
+
+.disabled {
+  background-color: #CCCCCC;
+  opacity: 0.8;
+}
+
+.login, .payable, .title {
+  padding: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.form {
+  border-top: 0.1px solid #CCCCCC;
+  display: block;
+  padding: 10px;
+}
+
+.wallet-sub-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.wallet-row, .card {
+  display: inline-flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  border-top: 0.1px solid #CCCCCC;
+}
+
+.card:hover {
+  background-color: #F2F2F2;
+}
+
+.selected-card, .selected-card:hover{
+  background-color: #0000FF;
+}
+
+.icon, .logo {
+  width: 30px;
+  height: 30px;
+}
+
+.icon:hover {
+  color: #0000FF;
+}
+
+.icon.hide {
+  opacity: 0;
+}
+
+.cc {
+  width: 42px;
+  height: 42px;
+  color: grey;
+}
+
+.cc-holder {
+  display: block;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.col-100 {
+  width: 98%;
+  margin: 10px 1%;
+}
+
+.col-50 {
+  width: 48%;
+  margin: 10px 1%;
+}
+
+@media only screen and (max-width: 480px) {
+  .col-50 {
+    width: 98%;
+  }
+}
+
