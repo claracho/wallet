@@ -1,46 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class Wallet extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: false,
-      cardSelected: null,
-    };
-  }
+const Wallet = (props) => {
+  console.log('wallet render');
 
-  selectCard(card) {
-    const selected = !(this.state.cardSelected && card.number === this.state.cardSelected.number);
-    this.setState({
-      selected,
-      cardSelected: card,
-    });
-  }
+  const handleLogOut = () => {
+    props.handleLogOut()
+      .then(() => {
+        props.history.push('/');
+      });
+  };
 
-  render() {
-    console.log('wallet render');
-
-    const cardList = this.props.userData.cards.map(card => (
-      <div key={card._id} onClick={() => this.selectCard(card)}>
-        {card.number}
-      </div>
-    ));
-
+  const cardList = props.userData.cards.map((card) => {
+    const className = (props.selectedCard && props.selectedCard._id === card._id)
+      ? 'card selected-card'
+      : 'card';
     return (
-      <div>
-        {`${this.props.userData.username}'s wallet`}
-        <form action="/logout" method="GET">
-          <button type="submit">Logout</button>
-        </form>
-        <Link to={`/users/${this.props.userData.username}/addcard`}>Add a Card</Link>
-        <Link to={`/users/${this.props.userData.username}/managecards`}>Manage Cards</Link>
-        {cardList}
-        {this.state.selected ? <button onClick={() => console.log(this.state.cardSelected)}>Pay</button> : null}
+      <div key={card._id} className={className} onClick={() => props.handleSelect(card)}>
+        {card.name}
       </div>
     );
-  }
-}
+  });
+
+  return (
+    <div>
+      {`${props.userData.username}'s wallet`}
+      <span onClick={handleLogOut}>{' X '}</span>
+      <Link to={`/users/${props.userData.username}/addcard`}>Add a Card</Link>
+      <Link to={`/users/${props.userData.username}/managecards`}>Manage Cards</Link>
+      {cardList}
+    </div>
+  );
+};
 
 export default Wallet;

@@ -1,22 +1,102 @@
 html, body {
-  margin: 0px;
-  padding: 0px;
+  padding: 10px;
   background-color: white;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
 }
 
+/* TODO change width based on window width*/
+/* 
+Computer: should center horizontally and vertically 
+Tablet: should center horizontally and vertically for both landscape and portrait mode
+Mobile: should center horizontally, vertically use scroll feature
+*/
+
 .container {
-  margin: 0px;
-  padding: 0px;
-  position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+  margin: auto;
+  width: 800px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  /*background-color: lightblue;*/
+  border: 1px solid gray;
+  border-radius: 10px;
+  /*box-shadow: 0px 5px 15px 0px grey;*/
+  overflow: hidden;
+}
+
+.wallet-container {
+  padding: 10px;
+  min-width: 300px;
+  border-right: 1px solid gray; /* change to border-bottom when size changes */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.payable-container {
+  padding: 10px;
+  min-width: 300px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+
+}
+
+.selected-card{
   background-color: lightblue;
-  box-shadow: 0px 5px 15px 0px grey; 
+}
+
+button {
+  display: block;
+  margin: 10px 0px;
+  padding: 6px;
+  width: 100%;
+  background-color: blue;
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: white;
+  color: blue;
+}
+
+button:focus {
+  outline: none;
+}
+
+
+input[type=text] {
+  box-sizing: border-box;
+  display: block;
+  margin: 10px 0px;
+  padding: 6px;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 16px;
+}
+
+input[type=text]:focus {
+  outline: none;
+  border: 1px solid blue;
 }
