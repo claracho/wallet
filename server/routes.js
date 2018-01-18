@@ -6,7 +6,7 @@ const _ = require('lodash');
 router.post('/login', (req, res, next) => {
   const { username } = req.body;
   db.readCreateUser(username)
-    .then((user) => { // assign userID to req.session
+    .then((user) => {
       req.session.userId = user._id;
       res.send(user);
     })
@@ -19,21 +19,21 @@ router.get('/logout', (req, res) => {
   res.end();
 });
 
-// READ user data, including username and user's cards
+// READ user data
 router.get('/userData', (req, res, next) => {
-  if (req.session.userId) { // if user logged in
+  if (req.session.userId) {
     const { userId } = req.session;
     db.readUser(userId)
       .then((user) => {
         res.send(user);
       })
       .catch(err => next(`/userData GET error: ${err}`));
-  } else { // if user not logged in
+  } else {
     res.send(null);
   }
 });
 
-// CREATE a credit card
+// ADD a credit card
 router.post('/users/:username/cards', (req, res, next) => {
   if (req.session.userId) {
     const { userId } = req.session;
@@ -81,7 +81,6 @@ router.delete('/users/:username/cards/:id', (req, res, next) => {
   }
 });
 
-// handle all non-api requests by redirecting to index
 router.get('*', (req, res) => {
   res.redirect('/');
 });

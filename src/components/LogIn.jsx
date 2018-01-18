@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PayPal from 'react-icons/lib/fa/paypal';
 
 const propTypes = {
   handleLogIn: PropTypes.func.isRequired,
@@ -9,8 +8,7 @@ const propTypes = {
 const LogIn = props => (
   <div className="login">
     <div className="title">
-      <PayPal className="logo" />
-      wallet
+      chowallet
     </div>
     <form onSubmit={props.handleLogIn}>
       <input type="text" className="col-100" name="username" placeholder="username" required />

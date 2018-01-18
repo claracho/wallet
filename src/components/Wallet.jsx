@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import CloseIcon from 'react-icons/lib/fa/close';
 
 const propTypes = {
@@ -54,8 +55,12 @@ const Wallet = (props) => {
         <CloseIcon className="icon" onClick={handleLogOut} />
       </div>
       <div className="wallet-row">
-        <Link to={`/users/${props.userData.username}/addcard`}>Add a Card</Link>
-        <Link to={`/users/${props.userData.username}/managecards`}>Manage Cards</Link>
+        <Link to={`/users/${props.userData.username}/addcard`}>
+          {'+ Add'}
+        </Link>
+        <Link to={`/users/${props.userData.username}/managecards`}>
+          {'Manage >'}
+        </Link>
       </div>
       {cardList}
     </div>

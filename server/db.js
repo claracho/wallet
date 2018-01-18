@@ -19,17 +19,13 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true,
+    index: true,
   },
   cards: [cardSchema],
 });
 
-// index by username
-// validation of cards
-
 const Users = mongoose.model('Users', userSchema);
 
-
-// READ or CREATE user
 const readCreateUser = username =>
   Users.findOne({ username })
     .then((user) => {
@@ -43,15 +39,12 @@ const readCreateUser = username =>
     })
     .catch(err => `database query error: ${err}`);
 
-
-// READ user data, including username and user's cards
 const readUser = userId =>
   Users.findOne({
     _id: userId,
   })
     .catch(err => `database query error: ${err}`);
 
-// CREATE a credit card
 const createCard = (userId, card) =>
   Users.findOneAndUpdate({
     _id: userId,
@@ -64,7 +57,6 @@ const createCard = (userId, card) =>
   })
     .catch(err => `database query error: ${err}`);
 
-// UPDATE a credit card
 const updateCard = (userId, cardId, card) =>
   Users.findOneAndUpdate({
     _id: userId,
@@ -78,7 +70,6 @@ const updateCard = (userId, cardId, card) =>
   })
     .catch(err => `database query error: ${err}`);
 
-// DELETE a credit card
 const deleteCard = (userId, cardId) =>
   Users.findOneAndUpdate({
     _id: userId,

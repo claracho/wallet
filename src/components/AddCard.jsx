@@ -22,7 +22,7 @@ const AddCard = (props) => {
     <div className="wallet-sub-container">
       <div className="wallet-row">
         <AngleLeft className="icon hide" />
-        Add Card for {username}
+        Add Debit or Credit Card
         <AngleRight className="icon" onClick={props.history.goBack} />
       </div>
       <CardForm onSubmit={onSubmit} />

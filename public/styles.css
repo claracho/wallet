@@ -25,6 +25,12 @@ button:focus {
   outline: none;
 }
 
+button:active {
+  position: relative;
+  top: 0.5px;
+  left: 0.5px;
+}
+
 button:disabled {
   border: 1px solid #727272;
   background-color: #727272;
@@ -79,6 +85,10 @@ a:link, a:hover, a:active, a:visited {
   align-items: center;
 }
 
+.payable-container {
+  min-height: 600px;
+}
+
 .wallet-container {
   align-items: stretch;
 }
@@ -89,6 +99,7 @@ a:link, a:hover, a:active, a:visited {
 }
 
 .login, .payable, .title {
+  width: 240px;
   padding: 100px 0px;
   display: flex;
   flex-direction: column;
@@ -118,6 +129,8 @@ a:link, a:hover, a:active, a:visited {
   padding: 10px;
   justify-content: space-between;
   align-items: center;
+  vertical-align: middle;
+
 }
 
 .card {
@@ -130,7 +143,7 @@ a:link, a:hover, a:active, a:visited {
 }
 
 .selected-card, .selected-card:hover{
-  background-color: #0000FF;
+  background-color: #CBCBFF;
 }
 
 .icon, .logo {
@@ -141,6 +154,12 @@ a:link, a:hover, a:active, a:visited {
 .icon:hover, a:hover {
   color: #0000FF;
   cursor: pointer;
+}
+
+.icon:active {
+  position: relative;
+  top: 0.5px;
+  left: 0.5px;
 }
 
 .icon.hide {
@@ -172,6 +191,9 @@ a:link, a:hover, a:active, a:visited {
 @media only screen and (max-width: 480px) {
   .col-50 {
     width: 98%;
+  }
+  .payment-container {
+    min-height: 400px;
   }
 }
 
