@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PayPal from 'react-icons/lib/fa/paypal';
 
-
 const propTypes = {
   handleLogIn: PropTypes.func.isRequired,
 };

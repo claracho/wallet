@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     axios.get('/userData')
       .then((result) => {
         this.setState({ userData: result.data });
@@ -104,7 +103,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('app render');
     return (
       <Router>
         <div className="container">

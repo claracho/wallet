@@ -18,6 +18,7 @@ button {
 button:hover {
   background-color: white;
   color: #000099;
+  cursor: pointer;
 }
 
 button:focus {
@@ -51,6 +52,11 @@ label > input {
 
 label > input:checked + .cc {
   color: #000099;
+}
+
+a:link, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: black;
 }
 
 .container {
@@ -120,6 +126,7 @@ label > input:checked + .cc {
 
 .card:hover {
   background-color: #F2F2F2;
+  cursor: pointer;
 }
 
 .selected-card, .selected-card:hover{
@@ -131,8 +138,9 @@ label > input:checked + .cc {
   height: 30px;
 }
 
-.icon:hover {
+.icon:hover, a:hover {
   color: #0000FF;
+  cursor: pointer;
 }
 
 .icon.hide {
@@ -140,8 +148,8 @@ label > input:checked + .cc {
 }
 
 .cc {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   color: grey;
 }
 

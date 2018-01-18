@@ -24,7 +24,6 @@ class Payable extends Component {
   }
 
   render() {
-    console.log('payable render');
     return (
       <div className="payable">
         Amount Due: $13.37

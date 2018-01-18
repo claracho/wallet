@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import TrashIcon from 'react-icons/lib/fa/trash-o';
 import EditIcon from 'react-icons/lib/fa/edit';
 import AngleRight from 'react-icons/lib/fa/angle-right';
@@ -26,7 +27,8 @@ class ManageCards extends Component {
     this.username = this.props.match.params.username;
   }
 
-  setModifyCard(id) {
+  setModifyCard(e, id) {
+    e.stopPropagation();
     if (this.state.modifyCard && id === this.state.modifyCard) {
       this.setState({
         modifyCard: null,
@@ -45,15 +47,18 @@ class ManageCards extends Component {
       });
   }
 
-  render() {
-    console.log('manage cards render');
+  handleRemoveCard(e, id) {
+    e.stopPropagation();
+    this.props.handleRemoveCard(id);
+  }
 
+  render() {
     const cardList = this.props.userData.cards.map(card => (
       <div className="manage-row" key={card._id}>
-        <div className="card" key={card._id}>
-          <EditIcon className="icon" onClick={() => this.setModifyCard(card._id)} />
+        <div roles="modify" className="card" key={card._id} onClick={e => this.setModifyCard(e, card._id)}>
+          <EditIcon className="icon" onClick={e => this.setModifyCard(e, card._id)} />
           <span>{`${card.type} ${card.name}`}</span>
-          <TrashIcon className="icon" onClick={() => this.props.handleRemoveCard(card._id)} />
+          <TrashIcon className="icon" onClick={e => this.handleRemoveCard(e, card._id)} />
         </div>
         {card._id === this.state.modifyCard
           ? <CardForm onSubmit={e => this.handleModifyCard(e, card._id)} card={card} />

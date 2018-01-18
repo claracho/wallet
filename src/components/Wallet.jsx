@@ -28,8 +28,6 @@ const defaultProps = {
 };
 
 const Wallet = (props) => {
-  console.log('wallet render');
-
   const handleLogOut = () => {
     props.handleLogOut()
       .then(() => {
