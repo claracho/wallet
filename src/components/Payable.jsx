@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const propTypes = {
   selectedCard: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    expiration: PropTypes.number.isRequired,
-    cvv: PropTypes.number.isRequired,
-  }),
-};
-
-const defaultProps = {
-  selectedCard: null,
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    number: PropTypes.number,
+    type: PropTypes.string,
+    expiration: PropTypes.number,
+    cvv: PropTypes.number,
+  }).isRequired,
 };
 
 class Payable extends Component {
@@ -27,7 +24,7 @@ class Payable extends Component {
     return (
       <div className="payable">
         Amount Due: $13.37
-        {this.props.selectedCard
+        {this.props.selectedCard._id
           ? <button className="col-100" onClick={() => console.log(this.props.selectedCard)}>
               {`Pay with ${this.props.selectedCard.type} ${this.props.selectedCard.name}`}
             </button>
@@ -40,6 +37,9 @@ class Payable extends Component {
 }
 
 Payable.propTypes = propTypes;
-Payable.defaultProps = defaultProps;
 
-export default Payable;
+const mapStateToProps = state => ({
+  selectedCard: state.selectedCard,
+});
+
+export default connect(mapStateToProps)(Payable);

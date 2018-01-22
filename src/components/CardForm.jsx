@@ -22,16 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  card: {
-    _id: null,
-    name: null,
-    firstName: null,
-    lastName: null,
-    number: null,
-    type: null,
-    expiration: null,
-    cvv: null,
-  },
+  card: {},
 };
 
 const CardForm = props => (

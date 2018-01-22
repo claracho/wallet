@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import CloseIcon from 'react-icons/lib/fa/close';
+
+import { setSelectedCard, logOut } from '../actions';
 
 const propTypes = {
   userData: PropTypes.shape({
@@ -11,21 +14,17 @@ const propTypes = {
     cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
   selectedCard: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    expiration: PropTypes.number.isRequired,
-    cvv: PropTypes.number.isRequired,
-  }),
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    number: PropTypes.number,
+    type: PropTypes.string,
+    expiration: PropTypes.number,
+    cvv: PropTypes.number,
+  }).isRequired,
   handleLogOut: PropTypes.func.isRequired,
   handleSelect: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  selectedCard: null,
 };
 
 const Wallet = (props) => {
@@ -37,7 +36,7 @@ const Wallet = (props) => {
   };
 
   const cardList = props.userData.cards.map((card) => {
-    const className = (props.selectedCard && props.selectedCard._id === card._id)
+    const className = (props.selectedCard._id && props.selectedCard._id === card._id)
       ? 'card selected-card'
       : 'card';
     return (
@@ -68,6 +67,17 @@ const Wallet = (props) => {
 };
 
 Wallet.propTypes = propTypes;
-Wallet.defaultProps = defaultProps;
 
-export default Wallet;
+const mapStateToProps = state =>
+  ({
+    userData: state.userData,
+    selectedCard: state.selectedCard,
+  });
+
+const mapDispatchToProps = dispatch =>
+  ({
+    handleSelect: card => dispatch(setSelectedCard(card)),
+    handleLogOut: () => dispatch(logOut()),
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

@@ -1,6 +1,6 @@
 # [chowallet](https://chowallet.herokuapp.com/)
 
-chowallet is a persistent digital wallet where users can create user accounts and create, read, update, and delete credit cards associated with their account. chowallet provides desktop and mobile support via responsive CSS styling. Front-end components are built using ReactJS and React Router to handle dynamic URLs. Back-end API is built on NodeJS using ExpressJS as the server-side framework and MongoDB/Mongoose for data persistence. A rudimentary session management is implemented using Express Session. chowallet is deployed on Heroku and can be found [here](https://chowallet.herokuapp.com).
+chowallet is a persistent digital wallet where users can create user accounts and create, read, update, and delete credit cards associated with their account. chowallet provides desktop and mobile support via responsive CSS styling. Front-end components are built using ReactJS, Redux & Redux Thunk for state management, and React Router for handling dynamic URLs. Back-end API and server are built on NodeJS using ExpressJS as the framework and MongoDB/Mongoose for data persistence. A rudimentary session management is implemented using Express Session. chowallet is deployed on Heroku and can be found [here](https://chowallet.herokuapp.com).
 
 ## Table of Contents
 1. [Requirements](#requirements)
@@ -20,6 +20,7 @@ chowallet is a persistent digital wallet where users can create user accounts an
 ### Technologies
 
 - ReactJS, React Router
+- Redux, Redux Thunk
 - CSS
 - Webpack, Babel
 - ExpressJS, Express Session
@@ -54,7 +55,7 @@ MONGODB_URI=[YOUR_MONGODB_URI]
 
 ### React Component Hierarchy
 
-React Component Hierarchy is illustrated in the diagram below:
+(DEPRECATED since Redux implementation) React Component Hierarchy is illustrated in the diagram below:
 
 ![reactCompHierarchy.png](reactCompHierarchy.png)
 
